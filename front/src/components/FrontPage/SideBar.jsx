@@ -5,7 +5,7 @@ const SideBar = () => {
     <div
       className="bg-dark text-white"
       style={{
-        width: "200px",
+        width: "199px",
         minHeight: "100vh",
         position: "fixed",
         top: "60px", // Adjusted for Navbar height
