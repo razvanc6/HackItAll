@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<AuthRedirect />} />
+        <Route path="/" element={<FrontPage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
