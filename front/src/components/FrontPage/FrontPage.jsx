@@ -4,17 +4,18 @@ import PostCard from "./PostCard";
 
 const MainPage = () => {
   const posts = [
-    {
+    { 
       id: 1,
+      userName:"Alex",
       title: "Historical Monument",
-      description: "A beautiful view of a historical site.",
+      description: "A beautiful view of a historical site.dsadasdasdsadasdas dasdasd safhvsj asfasoF HSDFSDHVBHKSD V DFHDS SJ OUVADIFUDASINHFISDAIUBDS IDSHJFBDSJFDJFDSG HF JAFBDSHK FDS HDF SDH VHSD FDSH FDSH FDSHV SDJGSDJHG DDSADPKJASF FSDA FAG FHA JHAD GFDA GAF GVHSA VJFD FHJVF VJHF AVHJSF VHFA VJHAFS VHJF SAVF DAVH FAV HJ FJV JHFD VJHADF VA VSFnvs djklv JDS jvlsl jkVs jkl  ",
       images: [
         "https://via.placeholder.com/600x400",
         "https://via.placeholder.com/600x400?text=Second+Image",
       ],
       upvotes: 120,
       comments: [
-        { text: "Amazing place!", upvotes: 15 },
+        { text: "Amazing place dsdnasdihbsdbvfhagbashg s FSDPIH VHPSFV PDFV DFV HISD vjhpsv hs vpihS VF VHhv hv hshv!", upvotes: 15 },
         { text: "Great picture!", upvotes: 25 },
         { text: "Looks so peaceful.", upvotes: 10 },
       ],
@@ -112,15 +113,15 @@ const MainPage = () => {
         </div>
 
         {/* Main Content */}
-        <Container fluid className="p-3" style={{ marginLeft: "200px" }}>
-          {posts.map((post) => (
-            <Row key={post.id} className="mb-4">
-              <Col>
-                <PostCard {...post} />
-              </Col>
-            </Row>
-          ))}
-        </Container>
+        <Container fluid className="p-3" style={{ marginTop: "60px" }}>
+      {posts.map((post) => (
+        <Row key={post.id} className="mb-4">
+          <Col>
+            <PostCard {...post} />
+          </Col>
+        </Row>
+      ))}
+    </Container>
       </div>
     </div>
   );
