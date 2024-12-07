@@ -8,6 +8,7 @@ import {
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword";
+import FrontPage from "./components/FrontPage/FrontPage";
 import "./App.css";
 
 const App = () => {
@@ -15,10 +16,11 @@ const App = () => {
     <Router>
       <AuthRedirect />
       <Routes>
+      <Route path="/" element={<FrontPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/homepage" element={<FrontPage />} />
       </Routes>
     </Router>
   );
