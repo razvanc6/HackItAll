@@ -1,25 +1,35 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const dotenv = require("dotenv");
+
+// Import rute
+const authRoutes = require("./routes/auth");
+const homeRoutes = require("./routes/home");
+const userRoutes = require("./routes/users"); // Importă ruta pentru utilizatori
+
+dotenv.config();
 
 const app = express();
 
-// Middleware
+// Middleware global
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-const uri = process.env.MONGO_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error('MongoDB Connection Error:', err));
+// Conectare la MongoDB
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Conectat la MongoDB"))
+  .catch((err) => console.error("Eroare conectare MongoDB:", err));
 
-// Example API Route
-app.get('/api', (req, res) => {
-  res.send('API is running...');
-});
+// Rute
+app.use("/api/auth", authRoutes); // Rute publice (fără middleware)
+app.use("/api/home", homeRoutes); // Rute protejate (cu middleware)
+app.use("/api/users", userRoutes); // Rute pentru utilizatori
 
-// Start Server
+// Pornire server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Serverul rulează pe portul ${PORT}`));

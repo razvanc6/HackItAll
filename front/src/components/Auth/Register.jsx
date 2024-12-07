@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,9 @@ const Register = () => {
     firstName: "",
     lastName: "",
     email: "",
-    address: "",
+    localitate: "",
+    judet: "",
+    strada: "",
     password: "",
     phoneNumber: "",
   });
@@ -19,16 +22,40 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("Registration submitted:", formData);
-    // Logica pentru înregistrare
+    const userData = {
+      cnp: formData.cnp,
+      nume: formData.firstName,
+      prenume: formData.lastName,
+      email: formData.email,
+      adresa: {
+        localitate: formData.localitate,
+        judet: formData.judet,
+        strada: formData.strada,
+      },
+      parola: formData.password,
+      telefon: formData.phoneNumber,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        userData
+      );
+      console.log(response.data);
+      alert("Înregistrare realizată cu succes!");
+      navigate("/login");
+    } catch (error) {
+      console.error(error.response?.data || "Eroare server");
+      alert("A apărut o eroare la înregistrare.");
+    }
   };
 
   return (
     <div className="register-container">
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <div className="form-group">
           <label>CNP</label>
           <input
@@ -74,13 +101,35 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Address</label>
+          <label>Localitate</label>
           <input
             type="text"
-            name="address"
-            value={formData.address}
+            name="localitate"
+            value={formData.localitate}
             onChange={handleChange}
-            placeholder="Enter Address"
+            placeholder="Enter Localitate"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Județ</label>
+          <input
+            type="text"
+            name="judet"
+            value={formData.judet}
+            onChange={handleChange}
+            placeholder="Enter Județ"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Stradă</label>
+          <input
+            type="text"
+            name="strada"
+            value={formData.strada}
+            onChange={handleChange}
+            placeholder="Enter Stradă"
             required
           />
         </div>
@@ -109,7 +158,7 @@ const Register = () => {
         <button type="submit">Register</button>
       </form>
       <div className="navigation-buttons">
-        <button onClick={() => navigate("/")}>Back to Login</button>
+        <button onClick={() => navigate("/login")}>Back to Login</button>
       </div>
     </div>
   );
