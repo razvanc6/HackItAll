@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
     if (!user) return res.status(404).json({ message: "CNP inexistent." });
 
     // Verifică parola
-    const isPasswordCorrect = await bcrypt.compare(parola, user.parola);
+    const isPasswordCorrect = await User.findOne({ cnp, parola });
     if (!isPasswordCorrect)
       return res.status(401).json({ message: "Parolă incorectă." });
 
