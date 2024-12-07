@@ -10,7 +10,9 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import Map from "./components/Map";
+import PostPage from "./components/PostPage/PostPage";
 import  FrontPage from "./components/FrontPage/FrontPage.jsx"
+
 const isAuthenticated = () => {
   return !!localStorage.getItem("token"); // Verifică dacă există un token în localStorage
 };
@@ -25,6 +27,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/mainpage" element={<FrontPage />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/post" element={<PostPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
