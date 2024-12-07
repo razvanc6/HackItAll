@@ -10,6 +10,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import Map from "./components/Map";
+import  FrontPage from "./components/FrontPage/FrontPage.jsx"
 const isAuthenticated = () => {
   return !!localStorage.getItem("token"); // Verifică dacă există un token în localStorage
 };
