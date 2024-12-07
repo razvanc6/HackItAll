@@ -9,6 +9,7 @@ function App() {
     <>
       <a target="_blank">
         <img src={reactLogo} className="logo react" alt="React logo" />
+        <div>salut</div>
       </a>
     </>
   );
