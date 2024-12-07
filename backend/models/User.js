@@ -31,6 +31,19 @@ const userSchema = new mongoose.Schema({
     required: true,
     match: /^[0-9]{10}$/,
   },
+  credite: {
+    type: Number,
+    default: 0,
+  },
+  admin: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  poza: {
+    type: String,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
