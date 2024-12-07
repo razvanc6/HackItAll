@@ -9,6 +9,17 @@ const MainPage = () => {
     navigate("/login", { replace: true });
   };
 
+  const [city, setCity] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Extrage parametrii din URL
+    const urlParams = new URLSearchParams(location.search);
+    const cityFromUrl = urlParams.get("city");
+    setCity(cityFromUrl);
+  }, [location]);
+
   return (
     <div className="container mt-5">
       <h1 className="text-center">Bun venit pe Main Page!</h1>
@@ -25,6 +36,17 @@ const MainPage = () => {
         <button onClick={handleLogout} className="btn btn-danger mt-3">
           Logout
         </button>
+      </div>
+      <div className="container mt-5">
+        <h1 className="text-center">Pagina Principală</h1>
+        <h2>
+          Filtru activ:{" "}
+          {city
+            ? `Orașul selectat este: ${city}`
+            : "Nu a fost selectat niciun oraș"}
+        </h2>
+        {/* Aici poți aplica logica pentru a filtra în funcție de orașul selectat */}
+        {/* Ex: afișarea unor produse, articole, etc. care sunt relevante pentru orașul respectiv */}
       </div>
     </div>
   );

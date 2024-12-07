@@ -7,6 +7,8 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 const homeRoutes = require("./routes/home");
 const userRoutes = require("./routes/users"); // Importă ruta pentru utilizatori
+const postRoutes = require("./routes/posts");
+const commentRoutes = require("./routes/comments");
 
 dotenv.config();
 
@@ -28,7 +30,9 @@ mongoose
 // Rute
 app.use("/api/auth", authRoutes); // Rute publice (fără middleware)
 app.use("/api/home", homeRoutes); // Rute protejate (cu middleware)
-app.use("/api/users", userRoutes); // Rute pentru utilizatori
+app.use("/users", userRoutes); // Rute pentru utilizatori
+app.use("/api/posts", postRoutes); // Rute pentru postări
+app.use("/api/comments", commentRoutes);
 
 // Pornire server
 const PORT = process.env.PORT || 5000;
