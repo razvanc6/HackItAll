@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import RomaniaMap from "../assets/ultima.svg"; // Înlocuiește cu calea către SVG
 import mapData from "../assets/mapdata.js";
 
@@ -7,6 +8,7 @@ const Map = () => {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedLocalities, setSelectedLocalities] = useState([]);
   const [svgContent, setSvgContent] = useState("");
+  const navigate = useNavigate();
 
   // Funcție pentru încărcarea SVG-ului din fișier
   useEffect(() => {
@@ -29,6 +31,11 @@ const Map = () => {
     } else {
       console.log("Ai apăsat pe un element care nu este un județ.");
     }
+  };
+
+  const handleCitySelect = (city) => {
+    // Navighează la pagina principală cu orașul selectat ca parametru
+    navigate(`/mainpage?city=${city}`);
   };
 
   return (
@@ -62,7 +69,19 @@ const Map = () => {
                 <p>Localități:</p>
                 <ul>
                   {selectedLocalities.map((locality, index) => (
-                    <li key={index}>{locality}</li>
+                    <li key={index}>
+                      <button
+                        onClick={() => handleCitySelect(locality)}
+                        style={{
+                          cursor: "pointer",
+                          border: "none",
+                          background: "transparent",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        {locality}
+                      </button>
+                    </li>
                   ))}
                 </ul>
               </div>

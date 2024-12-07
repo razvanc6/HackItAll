@@ -44,14 +44,14 @@ const MainPage = () => {
           <Col md={2} className="ps-4" style={{ paddingRight: "150px" }}>
             <strong>Menu Title</strong>
           </Col>
-  
+
           {/* Page Title */}
           <Col md={6}>
             <h2 className="text-center mb-0" style={{ paddingLeft: "450px" }}>
               Hot News
             </h2>
           </Col>
-  
+
           {/* User Info */}
           <Col md={4} className="d-flex justify-content-end align-items-center">
             <input
@@ -73,7 +73,7 @@ const MainPage = () => {
           </Col>
         </Row>
       </Container>
-  
+
       {/* Sidebar and Main Content */}
       <div className="d-flex" style={{ marginTop: "60px" }}>
         {/* Sidebar */}
@@ -104,13 +104,13 @@ const MainPage = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white" href="#">
-                Settings
+              <a className="nav-link text-white" href="/map">
+                Map
               </a>
             </li>
           </ul>
         </div>
-  
+
         {/* Main Content */}
         <Container fluid className="p-3" style={{ marginLeft: "200px" }}>
           {posts.map((post) => (
