@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import PostCard from "./PostCard";
+import Navbar from "./Navbar";
 
-const MainPage = () => {
+const FrontPage = () => {
   const posts = [
     { 
       id: 1,
@@ -38,42 +39,8 @@ const MainPage = () => {
 
   return (
     <div>
-      {/* Header */}
-      <Container fluid className="bg-dark text-white py-2 fixed-top">
-        <Row className="align-items-center">
-          {/* Sidebar Title */}
-          <Col md={2} className="ps-4" style={{ paddingRight: "150px" }}>
-            <strong>Menu Title</strong>
-          </Col>
-
-          {/* Page Title */}
-          <Col md={6}>
-            <h2 className="text-center mb-0" style={{ paddingLeft: "450px" }}>
-              Hot News
-            </h2>
-          </Col>
-
-          {/* User Info */}
-          <Col md={4} className="d-flex justify-content-end align-items-center">
-            <input
-              type="search"
-              className="form-control me-2"
-              placeholder="Search"
-              style={{ maxWidth: "200px" }}
-            />
-            <div className="text-end me-3">
-              <strong>John Doe</strong>
-              <br />
-              <span>$ 1234</span>
-            </div>
-            <img
-              src="https://via.placeholder.com/40"
-              alt="Avatar"
-              className="rounded-circle"
-            />
-          </Col>
-        </Row>
-      </Container>
+    {/* Use NavBar Component */}
+    <Navbar />
 
       {/* Sidebar and Main Content */}
       <div className="d-flex" style={{ marginTop: "60px" }}>
@@ -127,4 +94,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default FrontPage;
