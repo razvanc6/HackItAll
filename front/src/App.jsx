@@ -8,7 +8,7 @@ import {
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import ForgotPassword from "./components/Auth/ForgotPassword";
-import FrontPage from "./components/FrontPage/FrontPage";
+import FrontPage from "./components/FrontPage/FrontPage.jsx";
 import "./App.css";
 
 const App = () => {
