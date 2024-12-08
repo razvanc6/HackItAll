@@ -1,17 +1,24 @@
 const jwt = require("jsonwebtoken");
 
-const authMiddleware = (req, res, next) => {
-  const token = req.header("Authorization");
+const generateAccessToken = (userId) => {
+  // Aici setezi expirarea pentru mai mult timp
+  return jwt.sign({ userId }, "your_secret_key", { expiresIn: "30d" }); // Token valid 30 zile
+};
 
-  if (!token) return res.status(401).json({ message: "Acces interzis." });
+const authenticate = (req, res, next) => {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+
+  if (!token) {
+    return res.status(401).json({ message: "Tokenul nu a fost găsit" });
+  }
 
   try {
-    const verified = jwt.verify(token, "SECRET_KEY"); // Folosește cheia secretă
-    req.user = verified; // Adaugă utilizatorul verificat în request
-    next(); // Trece la următorul middleware sau handler de rută
+    const decoded = jwt.verify(token, "your_secret_key"); // Verifică token-ul
+    req.userId = decoded.userId; // Atașează userId la cererea curentă
+    next(); // Continuă cu următorul middleware/rută
   } catch (error) {
-    res.status(400).json({ message: "Token invalid." });
+    return res.status(401).json({ message: "Token invalid sau expirat" });
   }
 };
 
-module.exports = authMiddleware;
+module.exports = authenticate;

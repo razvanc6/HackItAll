@@ -18,6 +18,7 @@ router.post("/register", async (req, res) => {
         .json({ message: "Aveti un cont deja pe acest CNP." });
 
     // Hash parola
+    const hashedPassword = await bcrypt.hash(parola, 10);
 
     // Creează utilizator
     const newUser = new User({
@@ -26,7 +27,7 @@ router.post("/register", async (req, res) => {
       prenume,
       email,
       adresa,
-      parola,
+      parola: hashedPassword,
       telefon,
     });
     await newUser.save();
@@ -46,21 +47,24 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ cnp });
     if (!user) return res.status(404).json({ message: "CNP inexistent." });
 
-    // Verifică parola
-    const isPasswordCorrect = await User.findOne({ cnp, parola });
-    if (!isPasswordCorrect)
+    // Verifică parola fără bcrypt (doar o comparare simplă)
+    if (user.parola !== parola) {
       return res.status(401).json({ message: "Parolă incorectă." });
+    }
 
-    // Generează token JWT
-    const token = jwt.sign({ id: user._cnp, email: user.email }, "SECRET_KEY", {
+    // Generează token JWT (opțional)
+    const token = jwt.sign({ id: user._id, email: user.email }, "SECRET_KEY", {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ token, user });
+    // Trimite un obiect cu token și userId
+    res.status(200).json({ token, userId: user._id });
   } catch (error) {
     res.status(500).json({ message: "Eroare server.", error });
   }
 });
+
+module.exports = router;
 
 // Forgot Password
 router.post("/forgot-password", async (req, res) => {

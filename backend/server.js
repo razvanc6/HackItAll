@@ -9,6 +9,7 @@ const homeRoutes = require("./routes/home");
 const userRoutes = require("./routes/users"); // Importă ruta pentru utilizatori
 const postRoutes = require("./routes/posts");
 const commentRoutes = require("./routes/comments");
+const likeRoutes = require("./routes/likes");
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/home", homeRoutes); // Rute protejate (cu middleware)
 app.use("/users", userRoutes); // Rute pentru utilizatori
 app.use("/api/posts", postRoutes); // Rute pentru postări
 app.use("/api/comments", commentRoutes);
+app.use("/api/likes", likeRoutes);
 
 // Pornire server
 const PORT = process.env.PORT || 5000;
