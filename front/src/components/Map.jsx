@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import RomaniaMap from "../assets/ultima.svg"; // Update path to SVG
+import RomaniaMap from "../assets/ultima.svg"; // Path to the SVG file
 import mapData from "../assets/mapdata.js";
 
 const Map = () => {
@@ -10,7 +10,7 @@ const Map = () => {
   const [svgContent, setSvgContent] = useState("");
   const navigate = useNavigate();
 
-  // Load SVG content
+  // Load the SVG content on component mount
   useEffect(() => {
     fetch(RomaniaMap)
       .then((response) => response.text())
@@ -18,21 +18,21 @@ const Map = () => {
       .catch((error) => console.error("Error loading SVG:", error));
   }, []);
 
+  // Handle click on map regions
   const handleRegionClick = (e) => {
     const regionId = e.target.getAttribute("id");
-    console.log("Clicked ID:", regionId);
     const regionData = mapData.state_specific[regionId];
 
     if (regionData) {
-      console.log(`Clicked region: ${regionData.name}`);
       setSelectedRegion(regionData.name);
       setSelectedLocalities(regionData.localities || []);
       setIsModalOpen(true);
     } else {
-      console.log("Clicked on a non-region element.");
+      console.warn("Clicked on a non-region element.");
     }
   };
 
+  // Navigate to the selected city
   const handleCitySelect = (city) => {
     navigate(`/mainpage?city=${city}`);
   };
@@ -40,10 +40,7 @@ const Map = () => {
   return (
     <div>
       {/* Navigation Bar */}
-      <nav
-        className="navbar navbar-dark bg-dark"
-        style={{ padding: "10px 20px" }}
-      >
+      <nav className="navbar navbar-dark bg-dark px-4">
         <a className="navbar-brand" href="/">
           Home
         </a>
@@ -55,15 +52,20 @@ const Map = () => {
       </nav>
 
       {/* Main Content */}
-      <div className="container mt-5">
-        <h1 className="text-center">Harta României</h1>
+      
+        {/* Map Content */}
         <div
-          className="text-center"
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            cursor: "pointer",
+            marginTop: "10px",
+            minHeight: "100px", // Ensure proper vertical centering
+          }}
           dangerouslySetInnerHTML={{ __html: svgContent }}
           onClick={handleRegionClick}
-          style={{ cursor: "pointer", marginTop: "20px" }}
         ></div>
 
+        {/* Modal */}
         {isModalOpen && (
           <div
             className="modal show d-block"
@@ -106,7 +108,6 @@ const Map = () => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 
