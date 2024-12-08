@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import PostCard from "./PostCard";
 import Navbar from "./Navbar";
 import SideBar from "./SideBar";
@@ -8,8 +9,13 @@ const FrontPage = () => {
   const posts = [
     {
       id: 1,
+      userName: "Alex",
+      title: "Historical Monument",
+      description:
+        "A beautiful view of a historical site.dsadasdasdsadasdas dasdasd safhvsj asfasoF HSDFSDHVBHKSD V DFHDS SJ OUVADIFUDASINHFISDAIUBDS IDSHJFBDSJFDJFDSG HF JAFBDSHK FDS HDF SDH VHSD FDSH FDSH FDSHV SDJGSDJHG DDSADPKJASF FSDA FAG FHA JHAD GFDA GAF GVHSA VJFD FHJVF VJHF AVHJSF VHFA VJHAFS VHJF SAVF DAVH FAV HJ FJV JHFD VJHADF VA VSFnvs djklv JDS jvlsl jkVs jkl",
       title: "Historical Monument",
       description: "A beautiful view of a historical site.",
+
       images: [
         "https://via.placeholder.com/600x400",
         "https://via.placeholder.com/600x400?text=Second+Image",

@@ -35,6 +35,15 @@ const SideBar = () => {
             Map
           </a>
         </li>
+        <li className="nav-item">
+          <a
+            className="nav-link text-white bg-primary text-center rounded py-2 mt-3"
+            href="/post"
+            style={{ fontWeight: "bold" }}
+          >
+            Create Post
+          </a>
+        </li>
       </ul>
     </div>
   );
